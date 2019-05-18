@@ -1,5 +1,9 @@
 # re
 
+# TODO BEFORE START :
+
+    - Add a SWAP to the GlusterFS Pool
+
 # Post Install
 
 https://gist.github.com/adann0/9eff3e831e514988579337dc11492570
