@@ -38,4 +38,9 @@ mkdir -p mnt/config/sonarr
 mkdir -p mnt/config/radarr
 mkdir -p mnt/config/bazarr
 
+# Conf
+mv nginx.conf mnt/config/nginx
+mv smb.conf mnt/config/samba/
+mv libnss-ldap.conf mnt/config/samba
+
 
