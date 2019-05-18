@@ -33,6 +33,11 @@ Set more masters :
 
 # Deploy
 
+Clone this repo and replace each "example" value in files.
+
+    $ chmod +x dir.sh
+    $ ./dir.sh
+
     $ docker-compose up -d
     $ docker-compose ps
     
