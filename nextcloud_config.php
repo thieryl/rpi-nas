@@ -17,7 +17,7 @@ $CONFIG = array (
       'writable' => true,
     ),
   ),
-  'instanceid' => 'ococyn0hqjoq',
+  'instanceid' => 'xxxxxxx',
   'passwordsalt' => 'xxxxxxx',
   'secret' => 'xxxxx',
   'trusted_domains' =>
