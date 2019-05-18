@@ -28,8 +28,8 @@ Set more masters :
     
 # Let's Encrypt
 
-   https://github.com/adann0/docker-nginx-letsencrypt
-   https://github.com/adann0/openldap-armv7#openldap-certificates
+    https://github.com/adann0/docker-nginx-letsencrypt
+    https://github.com/adann0/openldap-armv7#openldap-certificates
 
 # Deploy
 
