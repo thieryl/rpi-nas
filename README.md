@@ -33,6 +33,8 @@ Set a Network for the Project and linked Containers :
 # Let's Encrypt
 
    https://github.com/adann0/docker-nginx-letsencrypt
+   + LDAP Certificates
+   + Samba
 
 # Deploy
 
