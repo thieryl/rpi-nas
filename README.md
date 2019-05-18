@@ -33,7 +33,11 @@ Set more masters :
 
 # Deploy
 
-Clone this repo and replace each "example" value in files.
+1. Clone this repo
+2. Mv your letsencrypt and ssl/certs/dhparam.pem folders into the repo folder
+3. Replace each "example" value in conf, env and sh files by our domain
+
+Then :
 
     $ chmod +x dir.sh
     $ ./dir.sh
