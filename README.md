@@ -37,21 +37,30 @@ Set more masters :
 2. Mv your letsencrypt and ssl/certs/dhparam.pem folders into the repo folder
 3. Replace each "example" value in conf, env and sh files by our domain
 
-Then :
+## Fix NextCloud
 
-    $ chmod +x dir.sh
-    $ ./dir.sh
+        $ chmod +x dir.sh
+        $ ./dir.sh
 
-    $ docker-compose up -d
-    $ docker-compose ps
-    
-    $ cd mnt/config/cloud && ls #wait for nextcloud config files...
-    
-    $ docker-compose down
+We should generate NextCloud config first to avoid potential bugs.
+
+    $ docker run -d \
+        --name nextcloud \
+        -v $(pwd)/mnt/www/example.com/cloud:/var/www/html \
+        -v $(pwd)/mnt/www/example.com/cloud/apps:/var/www/html/custom_apps \
+        -v $(pwd)/mnt/config/cloud:/var/www/html/config \
+        -v $(pwd)/mnt/data/cloud:/var/www/html/data \
+        -v $(pwd)/mnt/www/example.com/cloud/themes:/var/www/html/themes \
+        nextcloud:fpm-alpine
+
+Wait for the config and move the file into the Gluster Volume.
+
+    $ ls mnt/config/cloud
+    $ docker stop nextcloud
+    $ docker rm nextcloud
     $ sudo mv mnt/* /mnt
-    $ sed -i 's/.\/mnt/\/mnt/g' docker-compose.yml
-    
-    $ #docker-compose push
+
+## Stack Deploy
 
     $ docker stack deploy -c docker-compose.yml <stack>
     $ docker stack services <stack>
