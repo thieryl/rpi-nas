@@ -1,9 +1,5 @@
 # re
 
-# TODO BEFORE START :
-
-    - Add a SWAP to the GlusterFS Pool
-
 # Post Install
 
 https://gist.github.com/adann0/9eff3e831e514988579337dc11492570
@@ -29,10 +25,6 @@ To verify, on the master :
 Set more masters :
 
     $ docker node promote <node_id>
-
-Set a Network for the Project and linked Containers :
-
-    $ docker network create -d overlay --attachable rev3
     
 # Let's Encrypt
 
