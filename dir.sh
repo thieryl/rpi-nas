@@ -12,7 +12,6 @@ mkdir -p mnt/www/$DOMAIN/cloud/themes
 
 # Nginx
 mkdir -p mnt/config/nginx
-mkdir -p mnt/config/ssl/certs
 
 # Portainer
 mkdir -p mnt/data/portainer
@@ -42,5 +41,8 @@ mkdir -p mnt/config/bazarr
 mv nginx.conf mnt/config/nginx
 mv smb.conf mnt/config/samba/
 mv libnss-ldap.conf mnt/config/samba
+
+mv letsencrypt mnt/config
+mv ssl mnt/config
 
 
