@@ -41,6 +41,7 @@ mkdir -p mnt/config/bazarr
 mv nginx.conf mnt/config/nginx
 mv smb.conf mnt/config/samba/
 mv libnss-ldap.conf mnt/config/samba
+mv index.html mnt/www/$DOMAIN
 
 mv letsencrypt mnt/config
 mv ssl mnt/config
