@@ -53,8 +53,8 @@ Then :
     
     $ #docker-compose push
 
-    $ docker stack deploy -c docker-compose.yml rev3tk
-    $ docker stack services rev3tk
+    $ docker stack deploy -c docker-compose.yml <stack>
+    $ docker stack services <stack>
 
 # Sources :
 
