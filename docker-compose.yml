@@ -214,3 +214,48 @@ services:
     restart: always
     depends_on:
      - openldap
+
+  sonarr:
+    image: linuxserver/sonarr
+    container_name: sonarr
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Europe/London
+    volumes:
+      - ./mnt/config/sonarr:/config
+      - ./mnt/data/media/movie/Series:/tv
+      - ./mnt/data/media/movie/Deposit:/downloads
+    ports:
+      - 8989:8989
+    restart: unless-stopped
+
+  radarr:
+    image: linuxserver/radarr
+    container_name: radarr
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Europe/London
+    volumes:
+      - ./mnt/config/radarr:/config
+      - ./mnt/data/media/movie/Films:/movies
+      - ./mnt/data/media/movie/Deposit:/downloads
+    ports:
+      - 7878:7878
+    restart: unless-stopped
+
+  bazarr:
+    image: linuxserver/bazarr
+    container_name: bazarr
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Europe/London
+    volumes:
+      - ./mnt/config/bazarr:/config
+      - ./mnt/data/media/movie/Films:/movies
+      - ./mnt/data/media/movie/Series:/tv
+    ports:
+      - 6767:6767
+    restart: unless-stopped
