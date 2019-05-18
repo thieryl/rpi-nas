@@ -6,7 +6,7 @@ services:
     command: --transaction-isolation=READ-COMMITTED --binlog-format=ROW
     restart: always
     volumes:
-      - ./mnt/data/mysql:/var/lib/mysql
+      - /mnt/data/mysql:/var/lib/mysql
     environment:
       - MYSQL_ROOT_PASSWORD=secret
     env_file:
@@ -20,11 +20,11 @@ services:
     image: nextcloud:fpm-alpine
     restart: always
     volumes:
-      - ./mnt/www/example.org/cloud:/var/www/html
-      - ./mnt/www/example.org/cloud/apps:/var/www/html/custom_apps
-      - ./mnt/config/cloud:/var/www/html/config
-      - ./mnt/data/cloud:/var/www/html/data
-      - ./mnt/www/example.org/cloud/themes:/var/www/html/themes
+      - /mnt/www/example.org/cloud:/var/www/html
+      - /mnt/www/example.org/cloud/apps:/var/www/html/custom_apps
+      - /mnt/config/cloud:/var/www/html/config
+      - /mnt/data/cloud:/var/www/html/data
+      - /mnt/www/example.org/cloud/themes:/var/www/html/themes
     environment:
       - MYSQL_HOST=db
       - REDIS_HOST=redis
@@ -42,16 +42,16 @@ services:
       - 443:443
       - 8080:8080
     volumes:
-      - ./mnt/config/nginx/nginx.conf:/etc/nginx/nginx.conf:ro
-      - ./mnt/www/example.org/cloud:/var/www/html:ro
-      - ./mnt/www/example.org/cloud/apps:/var/www/html/custom_apps:ro
-      - ./mnt/config/nextcloud:/var/www/html/config:ro
-      - ./mnt/data/cloud:/var/www/html/data:ro
-      - ./mnt/www/example.org/cloud/themes:/var/www/html/themes:ro         
-      - ./mnt/config/ssl/certs/dhparam-2048.pem:/etc/ssl/certs/dhparam-2048.pem
-      - ./mnt/config/letsencrypt/etc/live/example.org/fullchain.pem:/etc/letsencrypt/live/example.org/fullchain.pem
-      - ./mnt/config/letsencrypt/etc/live/example.org/privkey.pem:/etc/letsencrypt/live/example.org/privkey.pem
-      - ./mnt/www/example.org:/usr/share/nginx/html/example.org
+      - /mnt/config/nginx/nginx.conf:/etc/nginx/nginx.conf:ro
+      - /mnt/www/example.org/cloud:/var/www/html:ro
+      - /mnt/www/example.org/cloud/apps:/var/www/html/custom_apps:ro
+      - /mnt/config/nextcloud:/var/www/html/config:ro
+      - /mnt/data/cloud:/var/www/html/data:ro
+      - /mnt/www/example.org/cloud/themes:/var/www/html/themes:ro         
+      - /mnt/config/ssl/certs/dhparam-2048.pem:/etc/ssl/certs/dhparam-2048.pem
+      - /mnt/config/letsencrypt/etc/live/example.org/fullchain.pem:/etc/letsencrypt/live/example.org/fullchain.pem
+      - /mnt/config/letsencrypt/etc/live/example.org/privkey.pem:/etc/letsencrypt/live/example.org/privkey.pem
+      - /mnt/www/example.org:/usr/share/nginx/html/example.org
     depends_on:
       - app
 
@@ -59,11 +59,11 @@ services:
     image: nextcloud:fpm-alpine
     restart: always
     volumes:
-      - ./mnt/www/example.org/cloud:/var/www/html
-      - ./mnt/www/example.org/cloud/apps:/var/www/html/custom_apps
-      - ./mnt/config/cloud:/var/www/html/config
-      - ./mnt/data/cloud:/var/www/html/data
-      - ./mnt/www/example.org/cloud/themes:/var/www/html/themes         
+      - /mnt/www/example.org/cloud:/var/www/html
+      - /mnt/www/example.org/cloud/apps:/var/www/html/custom_apps
+      - /mnt/config/cloud:/var/www/html/config
+      - /mnt/data/cloud:/var/www/html/data
+      - /mnt/www/example.org/cloud/themes:/var/www/html/themes         
     entrypoint: /cron.sh
     depends_on:
       - db
@@ -83,9 +83,9 @@ services:
     tty: true
     stdin_open: true
     volumes:
-      - ./mnt/data/openldap/ldap:/var/lib/ldap
-      - ./mnt/data/openldap/slapd:/etc/ldap/slapd.d
-      - ./mnt/config/ssl/openldap:/container/service/slapd/assets/certs/
+      - /mnt/data/openldap/ldap:/var/lib/ldap
+      - /mnt/data/openldap/slapd:/etc/ldap/slapd.d
+      - /mnt/config/ssl/openldap:/container/service/slapd/assets/certs/
     ports:
       - "389:389"
       - "636:636"
@@ -97,8 +97,8 @@ services:
     env_file:
       - phpldapadmin.env
     volumes:
-      - ./mnt/config/ssl/openldap:/container/service/ldap-client/assets/certs
-      - ./mnt/config/ssl/phpldapadmin:/container/service/phpldapadmin/assets/apache2/certs
+      - /mnt/config/ssl/openldap:/container/service/ldap-client/assets/certs
+      - /mnt/config/ssl/phpldapadmin:/container/service/phpldapadmin/assets/apache2/certs
     ports:
       - "6443:443"
     depends_on:
@@ -112,7 +112,7 @@ services:
       - 1234:9000
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
-      - ./mnt/data/portainer:/data
+      - /mnt/data/portainer:/data
 
   hydra2:
     image: linuxserver/hydra2
@@ -122,8 +122,8 @@ services:
       - PGID=1000
       - TZ=Europe/London
     volumes:
-      - ./mnt/config/hydra2:/config
-      - ./mnt/data/media/movie/Deposit:/downloads
+      - /mnt/config/hydra2:/config
+      - /mnt/data/media/movie/Deposit:/downloads
     ports:
       - 5076:5076
     restart: unless-stopped
@@ -138,8 +138,8 @@ services:
       - UMASK_SET=022
       - TZ=Europe/Paris
     volumes:
-      - ./mnt/config/deluge:/config
-      - ./mnt/data/media/movie/Deposit:/downloads
+      - /mnt/config/deluge:/config
+      - /mnt/data/media/movie/Deposit:/downloads
     ports:
       - 8112:8112
     restart: unless-stopped
@@ -153,8 +153,8 @@ services:
       - TZ=Europe/Paris
       - RUN_OPTS=<run options here> #optional
     volumes:
-      - ./mnt/config/jackett:/config
-      - ./mnt/data/media/movie/Deposit:/downloads
+      - /mnt/config/jackett:/config
+      - /mnt/data/media/movie/Deposit:/downloads
     ports:
       - 9117:9117
     restart: unless-stopped
@@ -182,8 +182,8 @@ services:
       - PGID=1000
       - TZ=Europe/London
     volumes:
-      - ./mnt/config/daapd:/config
-      - ./mnt/data/media/music:/music
+      - /mnt/config/daapd:/config
+      - /mnt/data/media/music:/music
     restart: unless-stopped
 
   plex:
@@ -195,9 +195,9 @@ services:
       - PGID=1000
       - VERSION=docker
     volumes:
-      - ./mnt/config/plex:/config
-      - ./mnt/data/media/movie/Series:/data/tvshows
-      - ./mnt/data/media/movie/Films:/data/movies
+      - /mnt/config/plex:/config
+      - /mnt/data/media/movie/Series:/data/tvshows
+      - /mnt/data/media/movie/Films:/data/movies
       - /tmp:/transcode
     restart: unless-stopped
 
@@ -208,9 +208,9 @@ services:
     ports:
      - "445:445"
     volumes:
-     - ./mnt/config/samba/libnss-ldap.conf:/etc/libnss-ldap.conf:ro
-     - ./mnt/config/samba/smb.conf:/etc/samba/smb.conf:ro
-     - ./mnt/data/media:/media
+     - /mnt/config/samba/libnss-ldap.conf:/etc/libnss-ldap.conf:ro
+     - /mnt/config/samba/smb.conf:/etc/samba/smb.conf:ro
+     - /mnt/data/media:/media
     restart: always
     depends_on:
      - openldap
@@ -223,9 +223,9 @@ services:
       - PGID=1000
       - TZ=Europe/London
     volumes:
-      - ./mnt/config/sonarr:/config
-      - ./mnt/data/media/movie/Series:/tv
-      - ./mnt/data/media/movie/Deposit:/downloads
+      - /mnt/config/sonarr:/config
+      - /mnt/data/media/movie/Series:/tv
+      - /mnt/data/media/movie/Deposit:/downloads
     ports:
       - 8989:8989
     restart: unless-stopped
@@ -238,9 +238,9 @@ services:
       - PGID=1000
       - TZ=Europe/London
     volumes:
-      - ./mnt/config/radarr:/config
-      - ./mnt/data/media/movie/Films:/movies
-      - ./mnt/data/media/movie/Deposit:/downloads
+      - /mnt/config/radarr:/config
+      - /mnt/data/media/movie/Films:/movies
+      - /mnt/data/media/movie/Deposit:/downloads
     ports:
       - 7878:7878
     restart: unless-stopped
@@ -253,9 +253,9 @@ services:
       - PGID=1000
       - TZ=Europe/London
     volumes:
-      - ./mnt/config/bazarr:/config
-      - ./mnt/data/media/movie/Films:/movies
-      - ./mnt/data/media/movie/Series:/tv
+      - /mnt/config/bazarr:/config
+      - /mnt/data/media/movie/Films:/movies
+      - /mnt/data/media/movie/Series:/tv
     ports:
       - 6767:6767
     restart: unless-stopped
