@@ -33,10 +33,6 @@ Set more masters :
 
 # Deploy
 
-J'ai un problème en déployant Nextcloud, les fichiers ne sont pas générés sur GlusterFS dans /mnt/config/cloud. La solution : faire en premier lieu un docker-compose up -d sur le master pour générer le fichier de configuration dans le dossier /home/$USER/$project/mnt, docker-compose down, deplacer tout les fichier dans mnt dans /mnt et docker stack deploy.
-
-    $ docker service create --name registry --publish published=5000,target=5000 registry:2
-
     $ docker-compose up -d
     $ docker-compose ps
     
