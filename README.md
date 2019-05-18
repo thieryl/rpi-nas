@@ -106,3 +106,8 @@ Then :
     https://github.com/adann0/openldap-armv7
     https://github.com/adann0/docker-images-armv7
 
+# ToDo :
+
+    - Env Files
+    - Reverse Proxy sur toutes les apps
+    - Docker Secret
