@@ -31,35 +31,6 @@ Set more masters :
     https://github.com/adann0/docker-nginx-letsencrypt
     https://github.com/adann0/openldap-armv7#openldap-certificates
 
-# Deploy
-
-1. Clone this repo
-2. Mv your letsencrypt and ssl/certs/dhparam.pem folders into the repo folder
-3. Replace each "example" value in conf, env and sh files by our domain
-
-## Fix NextCloud
-
-        $ chmod +x dir.sh
-        $ ./dir.sh
-
-We should generate NextCloud config first to avoid potential bugs.
-
-    $ docker run -d \
-        --name nextcloud \
-        -v $(pwd)/mnt/www/example.com/cloud:/var/www/html \
-        -v $(pwd)/mnt/www/example.com/cloud/apps:/var/www/html/custom_apps \
-        -v $(pwd)/mnt/config/cloud:/var/www/html/config \
-        -v $(pwd)/mnt/data/cloud:/var/www/html/data \
-        -v $(pwd)/mnt/www/example.com/cloud/themes:/var/www/html/themes \
-        nextcloud:fpm-alpine
-
-Wait for the config and move the file into the Gluster Volume.
-
-    $ ls mnt/config/cloud
-    $ docker stop nextcloud
-    $ docker rm nextcloud
-    $ sudo mv mnt/* /mnt
-
 ## Stack Deploy
 
     $ docker stack deploy -c docker-compose.yml <stack>
