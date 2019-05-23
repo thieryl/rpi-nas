@@ -1,5 +1,7 @@
 # re
 
+ToDo : passer Samba en dehors de Docker, et voir avec un partage NFS classique ou un RAID...
+
 # Post Install
 
 https://gist.github.com/adann0/9eff3e831e514988579337dc11492570
