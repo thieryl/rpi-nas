@@ -1,5 +1,7 @@
 # re
 
+Ce repo était un try de serveur NAS/Media, pour expérimenter Docker, ect... Projet a l'abandon car un Raspberry Pi + Disque Dur USB = Trop lent en vitesse de lecture pour les données que l'on souhaite envoyer a plusieurs utilisateurs simultanés qui utiliseraient le serveur. Pour 1 seul utilisateur c'est ok, avec des films qui ne sont pas en 4k.
+
 ToDo : passer Samba en dehors de Docker, et voir avec un partage NFS classique ou un RAID...
 
 # Post Install
